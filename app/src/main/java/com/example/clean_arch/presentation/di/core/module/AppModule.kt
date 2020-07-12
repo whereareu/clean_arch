@@ -3,7 +3,7 @@ package com.example.clean_arch.presentation.di.core.module
 import android.content.Context
 import com.aliasadi.clean.presentation.util.DispatchersProvider
 import com.aliasadi.clean.presentation.util.DispatchersProviderImpl
-import com.example.clean_arch.data.DiskExecutor
+import com.example.clean_arch.data.utils.DiskExecutor
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

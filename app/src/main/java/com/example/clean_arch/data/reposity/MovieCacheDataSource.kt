@@ -1,4 +1,4 @@
-package com.example.clean_arch.data.reposity.datasource
+package com.example.clean_arch.data.reposity
 
 import android.util.SparseArray
 import com.example.clean_arch.data.exception.NoDataException
@@ -6,10 +6,10 @@ import com.example.clean_arch.domain.model.Movie
 import com.example.clean_arch.domain.utils.Result
 
 class MovieCacheDataSource :
-    MovieDataSource.Cache {
+    DataSource.Cache<Movie> {
     private val cachedMovies = SparseArray<Movie>()
 
-    override suspend fun getMovies(): Result<List<Movie>> {
+    override suspend fun getList(): Result<List<Movie>> {
         return if (cachedMovies.size() > 0) {
             val movies = arrayListOf<Movie>()
             for (i in 0 until cachedMovies.size()) {
@@ -22,7 +22,7 @@ class MovieCacheDataSource :
         }
     }
 
-    override fun saveMovies(movies: List<Movie>) {
+    override fun saveList(movies: List<Movie>) {
         cachedMovies.clear()
         for (movie in movies) {
             cachedMovies.put(movie.id, movie)

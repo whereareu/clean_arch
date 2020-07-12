@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProviders
 import com.example.clean_arch.R
 import com.example.clean_arch.presentation.base.BaseActivity
+import com.example.clean_arch.presentation.di.feed.FeedModule
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
@@ -20,7 +21,7 @@ class MainActivity : BaseActivity<FeedViewModel>(R.layout.activity_main) {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        daggerInjector.createFeedComponent().inject(this)
+        coreComponent.plus(FeedModule()).inject(this)
         super.onCreate(savedInstanceState)
 
         recyclerView.adapter = movieAdapter

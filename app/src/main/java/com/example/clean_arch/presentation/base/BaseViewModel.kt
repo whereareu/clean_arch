@@ -15,4 +15,9 @@ abstract class BaseViewModel (
     fun execute(job : suspend() -> Unit) = launch {
         withContext(dispatchers.getIO()) { job.invoke() }
     }
+
+    override fun onCleared() {
+        super.onCleared()
+        coroutineContext.cancel()
+    }
 }

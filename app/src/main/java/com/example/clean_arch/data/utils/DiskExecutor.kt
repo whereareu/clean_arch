@@ -1,4 +1,4 @@
-package com.example.clean_arch.data
+package com.example.clean_arch.data.utils
 
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
