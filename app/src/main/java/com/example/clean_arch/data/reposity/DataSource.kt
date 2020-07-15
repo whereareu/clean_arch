@@ -3,15 +3,15 @@ package com.example.clean_arch.data.reposity
 import com.example.clean_arch.domain.model.Movie
 import com.example.clean_arch.domain.utils.Result
 
-interface DataSource<T> {
-    interface Remote<T> {
-        suspend fun getList(): Result<List<T>>
+interface DataSource {
+    interface Remote {
+        suspend fun getList(): Result<List<Movie>>
     }
 
-    interface Local<T> : Remote<T> {
-        fun saveList(list: List<T>)
+    interface Local : Remote {
+        fun saveList(list: List<Movie>)
     }
 
-    interface Cache<T> : Local<T>
+    interface Cache : Local
 
 }

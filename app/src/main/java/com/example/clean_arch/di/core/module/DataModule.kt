@@ -1,14 +1,13 @@
-package com.example.clean_arch.presentation.di.core.module
+package com.example.clean_arch.di.core.module
 
 import com.example.clean_arch.data.utils.DiskExecutor
 import com.example.clean_arch.data.db.MovieDao
-import com.example.clean_arch.data.net.MovieApi
+import com.example.clean_arch.data.api.MovieApi
 import com.example.clean_arch.data.reposity.*
 import com.example.clean_arch.data.reposity.MovieCacheDataSource
 import com.example.clean_arch.data.reposity.DataSource
 import com.example.clean_arch.data.reposity.MovieLocalDataSource
 import com.example.clean_arch.data.reposity.MovieRemoteDataSource
-import com.example.clean_arch.domain.model.Movie
 import com.example.clean_arch.domain.repository.MovieRepository
 import com.example.clean_arch.domain.usecase.GetMoviesUseCase
 import dagger.Module
@@ -19,9 +18,9 @@ import javax.inject.Singleton
 class DataModule {
     @Provides
     @Singleton
-    fun provideMovieRepository(remote: DataSource.Remote<Movie>,
-                               local: DataSource.Local<Movie>,
-                               cache: DataSource.Cache<Movie>): MovieRepository {
+    fun provideMovieRepository(remote: DataSource.Remote,
+                               local: DataSource.Local,
+                               cache: DataSource.Cache): MovieRepository {
         return MovieRepositoryImpl(remote, local, cache)
     }
 
@@ -29,7 +28,7 @@ class DataModule {
     @Singleton
     fun provideMovieLocalDataSource(
         executor: DiskExecutor, movieDao: MovieDao
-    ): DataSource.Local<Movie> {
+    ): DataSource.Local {
         return MovieLocalDataSource(
             executor,
             movieDao
@@ -38,14 +37,14 @@ class DataModule {
 
     @Provides
     @Singleton
-    fun provideMovieCacheDataSource(): DataSource.Cache<Movie> {
+    fun provideMovieCacheDataSource(): DataSource.Cache {
         return MovieCacheDataSource()
     }
 
 
     @Provides
     @Singleton
-    fun provideMovieRemoveDataSource(movieApi: MovieApi): DataSource.Remote<Movie> {
+    fun provideMovieRemoveDataSource(movieApi: MovieApi): DataSource.Remote {
         return MovieRemoteDataSource(
             movieApi
         )

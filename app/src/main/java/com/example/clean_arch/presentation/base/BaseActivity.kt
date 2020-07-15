@@ -1,28 +1,16 @@
 package com.example.clean_arch.presentation.base
 
 import android.os.Bundle
+import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
 import com.example.clean_arch.presentation.App
 
-abstract class BaseActivity<VM : ViewModel>(private val contentLayoutId: Int) : AppCompatActivity(contentLayoutId) {
-    protected val coreComponent by lazy { (application as App).getCore() }
+abstract class BaseActivity(@LayoutRes private val resId: Int) : AppCompatActivity() {
 
-    lateinit var viewModel: VM
-
-    protected abstract fun createViewModel(): VM
+    val coreComponent by lazy { (application as App).getCore() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = createViewModel()
-        setContentView(contentLayoutId)
-    }
-
-    fun <T> LiveData<T>.observe(observer: (T) -> Unit) {
-        observe(this@BaseActivity, Observer {
-            it?.let { observer(it) }
-        })
+        setContentView(resId)
     }
 }

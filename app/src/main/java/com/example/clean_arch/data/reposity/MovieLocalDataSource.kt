@@ -10,7 +10,7 @@ import com.example.clean_arch.domain.utils.Result
 class MovieLocalDataSource (
     private val executor: DiskExecutor,
     private val movieDao: MovieDao
-) : DataSource.Local<Movie> {
+) : DataSource.Local {
 
     override suspend fun getList(): Result<List<Movie>> {
         val movies = movieDao.getMovies()

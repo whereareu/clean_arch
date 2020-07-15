@@ -6,9 +6,9 @@ import com.example.clean_arch.domain.repository.MovieRepository
 import com.example.clean_arch.domain.utils.Result
 
 class MovieRepositoryImpl(
-    private val remote: DataSource.Remote<Movie>,
-    private val local: DataSource.Local<Movie>,
-    private val cache: DataSource.Cache<Movie>
+    private val remote: DataSource.Remote,
+    private val local: DataSource.Local,
+    private val cache: DataSource.Cache
 ) : MovieRepository {
 
     override suspend fun getMovies(): Result<List<Movie>> {
@@ -47,6 +47,7 @@ class MovieRepositoryImpl(
         val result = remote.getList()
 
         if (result is Result.Success) {
+            Log.d("XXX", "Getting movies from server")
             saveMovies(result.data)
             refreshCache(result.data)
         }

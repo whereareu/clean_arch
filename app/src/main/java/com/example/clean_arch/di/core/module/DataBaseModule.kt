@@ -1,4 +1,4 @@
-package com.example.clean_arch.presentation.di.core.module
+package com.example.clean_arch.di.core.module
 
 import android.content.Context
 import androidx.room.Room

@@ -1,4 +1,4 @@
-package com.example.clean_arch.data.net
+package com.example.clean_arch.data.api
 
 import com.example.clean_arch.data.model.remote.MovieResponse
 import kotlinx.coroutines.Deferred

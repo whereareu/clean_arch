@@ -1,4 +1,4 @@
-package com.example.clean_arch.presentation.feed
+package com.example.clean_arch.presentation.movies
 
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder

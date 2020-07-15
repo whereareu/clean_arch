@@ -6,7 +6,7 @@ import com.example.clean_arch.domain.model.Movie
 import com.example.clean_arch.domain.utils.Result
 
 class MovieCacheDataSource :
-    DataSource.Cache<Movie> {
+    DataSource.Cache {
     private val cachedMovies = SparseArray<Movie>()
 
     override suspend fun getList(): Result<List<Movie>> {
